@@ -1,0 +1,1 @@
+//  6) Crie um programa que calcule a velocidade média de uma viagem (distancia (km) / tempo (h))

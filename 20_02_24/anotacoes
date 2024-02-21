@@ -1,0 +1,32 @@
+o que é backend?
+ - é a parte funcional do sistema/aplicação
+ frontend: (o usuário consegue ver - 20% da aplicação)
+  - toolkits, frameworks e libs
+  - UI/UX
+  - fluidez
+  - comunicação
+  - acessibilidade
+ backend: (não é visivel ao usuário - 80% da aplicação - repetição)
+  - banco de dados
+  - comunicação (rest, soap)
+  - segurança 
+  - servidores
+ habilidades necessárias:
+  - conhecimento em alguma/várias linguagens de programação
+  - conhecimento em acessibilidade e segurança
+  - entender de tecnologias web (html, css e js)
+  - conhecimento em controle de versão
+  - estrutura de dados
+  - s.o.
+  - arquitetura orienteda a serviço
+  - desing patterns
+  - api's
+  - autenticação
+  - cache
+  - testes
+  - serviços web (nginx, apache, iss) 
+ linguagens utilizadas:
+  - JS: express e node
+  - PYTHON: django e flask
+  - JAVA: spring e jsf
+  - C#: asp.net core e .net mvc
