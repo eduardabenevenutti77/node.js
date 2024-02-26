@@ -1,5 +1,3 @@
-// 5) Crie um programa que calcule bhaskara
-
 const readLine = require('readline')
 
 const rl = readLine.createInterface({
@@ -7,39 +5,34 @@ const rl = readLine.createInterface({
     output: process.stdout
 });
 
-let ladoA = [];
-let ladoB = [];
-let ladoC = [];
+let ladoA, ladoB, ladoC;
 
-function inserindoValoresLados(i) {
+function inserindoValoresLados() {
     rl.question(`Informe o valor do lado A: `, (a) => {
-        ladoA.push(Number(a));
-        if(ladoA.length<1){
-            inserindoValoresLados(ladoA.length)
-        } else {
-            rl.question(`Informe o valor do lado B: `, (b) => {
-                ladoB.push(Number(b));
-                if(ladoB.length<1){
-                    inserindoValoresLados(ladoB.length);
-                } else {
-                    rl.question(`Informe o valor do lado C: `, (c) => {
-                        ladoC.push(Number(c));
-                        if(ladoC.length<1){
-                            inserindoValoresLados(ladoC.length);
-                        } else {
-                            calculoBhaskara();
-                            rl.close();
-                        }
-                    })
-                }
-            })
-        }
-    })
+        ladoA = Number(a);
+        rl.question(`Informe o valor do lado B: `, (b) => {
+            ladoB = Number(b);
+            rl.question(`Informe o valor do lado C: `, (c) => {
+                ladoC = Number(c);
+                calculoBhaskara();
+            });
+        });
+    });
 }
+
 //  (-b±√(b²-4ac))/(2a)
 function calculoBhaskara() {
-    let calculo1 = (ladoB * 2 - 4 * ladoA * ladoC);
-    let calculo2 = ()
+    let calculo1 = Math.pow(ladoB, 2) - 4 * ladoA * ladoC;
+    if (calculo1 >= 0) {
+        const raizA = (-ladoB + Math.sqrt(calculo1)) / (2 * ladoA);
+        const raizB = (-ladoB - Math.sqrt(calculo1)) / (2 * ladoA);
+        console.log("Raiz A: " + raizA);
+        console.log('Raiz B: ' + raizB);
+    } else {
+        console.log("Raízes não reais (complexas)");
+    }
+    rl.close();
 }
 
-inserindoValoresLados(0);
+
+inserindoValoresLados();
