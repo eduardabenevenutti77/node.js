@@ -1,0 +1,17 @@
+o que é node.js?
+ - ambiente de execução de javascript para o servidor
+ - open source
+ - estrutura assíncrona (não aguarda resposta!)
+ - a parte do frontend roda em javascript
+ - compilação em JIT: otimiza códigos repetitivos
+empacotadores:
+ - bibliotecas internas (pacotes) a serem usadas dentro do node.js - MySQL
+ - gerencia as dependencias e versões semânticas dos pacotes 
+ - intalação dos pacotes na pasta - Node Modules
+ - cachemento permite que o desenvolvedor não fique instalando várias versões das dependencias
+NPM:
+ - falicita a troca de códigos
+ - nativo do node
+YARN:
+ - + rápido e + seguro
+ - open source
