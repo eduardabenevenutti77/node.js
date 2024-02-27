@@ -1,7 +1,7 @@
 o que é node.js?
  - ambiente de execução de javascript para o servidor
  - open source
- - estrutura assíncrona (não aguarda resposta!)
+ - estrutura assíncrona (não aguarda resposta!) - não há ordem de execução
  - a parte do frontend roda em javascript
  - compilação em JIT: otimiza códigos repetitivos
 empacotadores:
@@ -15,3 +15,23 @@ NPM:
 YARN:
  - + rápido e + seguro
  - open source
+callback: permite que uma chamada de uma função seja atrasada
+callback hell: encadeamento de callbacks
+ - deve-se tomar cuidado quando cria callback!
+tipos de callbacks: funções inicias, middlewares e terminators
+execuções assíncronas: em série, paralela (por definição todas as execuções assíncronas são assim) e paralela limitada
+EVENT LOOP:
+  heap: memória de armazenamento
+  stack: memória de execução
+  queue: armazenamento de execução em lista que pode ser assíncrona
+blocking:
+ - síncronas
+ - aguarda todo o processo terminar para mudar de etapa
+non-blocking:
+ - permite diversos processos diferentes e com tempo de execução diferentes enquanto a etapa não termina
+ - assíncronas
+ - usa-se os callbacks
+promises:
+ - parecido com o try - cacth / if - else
+ - retorna um callback (resultado positivo/negativo)
+ 
