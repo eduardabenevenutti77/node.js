@@ -34,4 +34,4 @@ non-blocking:
 promises:
  - parecido com o try - cacth / if - else
  - retorna um callback (resultado positivo/negativo)
- 
+setTimeout: aguarda para executar o processo
