@@ -1,0 +1,34 @@
+o que é http (protocolo de transferencia de texto):
+ - protocolo de comunicação usado para transferir dados
+ - padrão de comunicação
+
+ arquitetura http:
+  - camadas de aplicação: física / rede (IP) / transporte (envio de dados) / aplicação (http)
+
+PROTOCOLO HTTP:
+  cliente-servidor = relação entre o usuário com o servidor
+  - o processo se inicia pelo cliente e recebe a resposta do servidor
+  - troca de mensagens entre as duas entidades
+
+  como a comunicação ocorre:
+  - por meio da url
+  - fragmentos da url = protocolo - sub-dominio - dominio - porta - path - query - parâmetros - fragmentos
+  
+  URL =  
+  URI = forma padrão de identificar recursos, esquema universal (base)
+  URN = 
+
+  "tudo é uri, mas nem tudo é url"
+
+  portas padrões ( 80 - http; 443 - https; 20 / 21 - ftp )
+
+  DNS: domínio, forma legível de identificar o IP (www.google.com)
+
+  padrões - verbos: get (pega de dados), put (alteração completas), post (insere dados), delete (apagar dados), patch (alteração parcial), head (determina a comunicação com a aplicação), connect (conexão com a aplicação), options , trace (debbug)
+
+  - resposta em status (informação - 100, sucesso - 200, redirecionamento - 300, erro no lado do cliente - 400, erro no lado do servidor - 500)
+  - get/put = 200, delete = 204, post = 201 (se esses padrões forem executados de maneira correta)
+
+  autenticação (lembra o servidor quem é)
+   - session = autenticação de login e seus processos de validação
+   - coockie = forma de passar para o cliente que a autenticação já ocorreu e mostra isso para o servidor
