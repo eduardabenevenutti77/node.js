@@ -5,6 +5,7 @@ const {Connection} = require('mysql2');
 const app = express();
 app.use(express.json);
 
+// estabelece dados da conexão
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -13,17 +14,13 @@ const connection = mysql.createConnection({
     port: 3306,
 });
 
+// verifica status da conexão
 connection.connect((err) => {
     if (err) {
         console.error(' Erro ao conectar ao banco de dados: ', err);
     } else {
         console.log(' Conexão bem-sucedido ao banco de dados! ');
     }
-});
-
-process.on('SIGINT', () => {
-    connection.end();
-    process.exit;
 });
 
 app.post('/postUsuario', (req, res) => {
@@ -41,6 +38,13 @@ app.post('/postUsuario', (req, res) => {
     });
 })
 
+// finaliza a conexão
+process.on('SIGINT', () => {
+    connection.end();
+    process.exit;
+});
+
+// mostra em qual porta o servidor está rodando
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor ouvindo na porta: ${PORT}`);

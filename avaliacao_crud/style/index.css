@@ -35,3 +35,9 @@ a {
     color: #113968;
     margin-top: 15px;
 }
+.svg {
+    width: 150px;
+    height: 150px;
+    margin-left: 80px;
+    margin-top: 10px;
+}
