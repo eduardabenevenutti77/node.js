@@ -1,0 +1,14 @@
+padrões de projeto:
+ - descreve um problema e determina uma solução sendo reutilizado mais de uma vez
+ - são descrição de objetos e classes que precisam ser modificados para resolver um problema geral em determinada situação
+ - padrões de projetos conhecidos (criacional, estrutural e comportamental)
+ padrão criacionais:
+  - criação de objetos, abstração de classes, aumento de flexibilidade e reutilização
+ padrão estruturais:
+  - composição das classes e objetos, fornece apoio para que as classes se desenvolvam
+ padrão comportamentais:
+  - relacionado a comunicação entre objetos
+
+antipadrão de projeto:
+ - soluções que parecem ser uma boa ideia, porém tem pouca qualidade
+ - aparece quando não sabemos todos os requisitos, arquiteto sem experiencia, prazos apertados

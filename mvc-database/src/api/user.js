@@ -6,7 +6,6 @@ class UserApi {
         const email = req.body.email;
         const senha = req.body.senha;
         const controller = new UserController();
-
         try {
             const user = await controller.criarUsuario(nome, email, senha);
             return res.status(201).send(user);
