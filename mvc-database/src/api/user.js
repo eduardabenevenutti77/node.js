@@ -13,7 +13,6 @@ class UserApi {
             return res.status(400).send({ error: error.message })
         }
     }
-
     async alterarUsuario(req, res) {
         const { id } = req.params;
         const { nome, email, senha } = req.body;
@@ -25,7 +24,6 @@ class UserApi {
             return res.status(400).send({ error: error.message })
         }
     }
-
     async deletarUsuario(req, res) {
         const { id } = req.params;
         const controller = new UserController();
@@ -36,7 +34,6 @@ class UserApi {
             return res.status(400).send({ error: error.message })
         }
     }
-
     async listarUsuario(req, res) {
         const controller = new UserController();
         try {
@@ -47,5 +44,4 @@ class UserApi {
         }
     }
 }
-
 module.exports = UserApi;

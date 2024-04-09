@@ -14,7 +14,6 @@ class UserController {
             .create({ nome, email, senha });
         return user;
     }
-
     async buscarPorId(id) {
         if (id === undefined) {
             throw new Error('Id é obrigatório');
@@ -25,7 +24,6 @@ class UserController {
         }
         return user;
     }
-
     async alterarUsuario(id, nome, email, senha) {
         if (
             id === undefined
@@ -43,7 +41,6 @@ class UserController {
         user.save();
         return user;
     }
-
     async deletarUsuario(id) {
         if (id === undefined) {
             throw new Error('Id é obrigatório');
@@ -51,10 +48,8 @@ class UserController {
         const user = await this.buscarPorId(id);
         user.destroy();
     }
-
     async listarUsuarios() {
         return User.findAll();
     }
 }
-
 module.exports = UserController;
