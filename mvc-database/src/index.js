@@ -1,7 +1,6 @@
 const express = require('express');
 const UserApi = require('./api/user');
 const database = require('./config/database');
-
 const app = express()
 app.use(express.json())
 
