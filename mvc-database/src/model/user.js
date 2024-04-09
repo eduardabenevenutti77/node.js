@@ -21,4 +21,6 @@ class User {
     }
 }
 
+// modelo espelhado no banco de dados
+
 module.exports = (new User).model;
