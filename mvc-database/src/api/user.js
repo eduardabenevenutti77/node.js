@@ -18,7 +18,6 @@ class UserApi {
         const { id } = req.params;
         const { nome, email, senha } = req.body;
         const controller = new UserController();
-
         try {
             const user = await controller.alterarUsuario(Number(id), nome, email, senha);
             return res.status(200).send(user);
@@ -30,7 +29,6 @@ class UserApi {
     async deletarUsuario(req, res) {
         const { id } = req.params;
         const controller = new UserController();
-
         try {
             await controller.deletarUsuario(Number(id));
             return res.status(204).send();
@@ -41,7 +39,6 @@ class UserApi {
 
     async listarUsuario(req, res) {
         const controller = new UserController();
-
         try {
             const users = await controller.listarUsuarios();
             return res.status(200).send(users);
