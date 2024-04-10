@@ -14,14 +14,12 @@ app.get('/usuario', (req, res) => {
 // inclui usuário na lista
 app.post('/usuario', (req, res) => {
     const { nome, email } = req.body;
-
     let id = 0;
     for (const usuario of usuarios) {
         if (usuario.id > id) {
             id = usuario.id;
         }
     }
-
     const usuario = {
         id: id + 1,
         nome, 
@@ -35,12 +33,10 @@ app.post('/usuario', (req, res) => {
 app.put('/usuario/:id', (req, res) => {
     const { id } = req.params;
     const { nome, email } = req.body;
-    
     const index = usuarios.findIndex(u => u.id === Number(id));
     if (index === -1) {
         return res.status(404).json({ error: 'Usuário não encontrado'})
     }
-
     usuarios[index] = {
         id: Number(id),
         nome,
@@ -52,12 +48,10 @@ app.put('/usuario/:id', (req, res) => {
 // deleta usuário
 app.delete('/usuario/:id', (req, res) => {
     const { id } = req.params;
-
     const index = usuarios.findIndex(u => u.id === Number(id));
     if (index === -1) {
         return res.status(404).json({ error: 'Usuário não encontrado'})
     }
-
     usuarios.splice(index, 1);
     res.status(204).send();
 })
@@ -70,7 +64,6 @@ app.get('/postagem', (req, res) => {
 // mostra postagem por determinado id do usuário
 app.get('/postagemUsuario/:id', (req, res) => {
     const {id} = req.params;
-    
     const index = usuarios.findIndex(u => u.id === Number(id));
     if (index === -1) {
         return res.status(404).json({ error: "Usuário não foi encontrada para mostrar suas publicações!" });
@@ -85,14 +78,12 @@ app.post('/postagem', (req, res) => {
     if (!autor) {
         return res.status(404).json({ error: "Não existe usuário com esse número de identificação!" });
     }
-
     let id = 0;
     for (const postagem of postagens) {
         if (postagem.id > id) {
             id = postagem.id;
         }
     }
-
     const novaPostagem = {
         id: id + 1,
         titulo: tituloPostagem,
@@ -107,12 +98,10 @@ app.post('/postagem', (req, res) => {
 app.put("/postagem/:id", (req, res) => {
     const {id} = req.params;
     const {tituloPostagem, conteudo} = req.body;
-
     const index = postagens.findIndex(u => u.id === Number(id));
     if (index === -1) {
         return res.status(404).json({ error: "Postagem não foi encontrada!" });
     }
-
     postagens[index] = {
         id: Number(id),
         tituloPostagem,
@@ -124,12 +113,10 @@ app.put("/postagem/:id", (req, res) => {
 // deleta postagem por determinado id
 app.delete('/postagem/:id', (req, res) => {
     const {id} = req.params;
-    
     const index = postagens.findIndex(u => u.id === Number(id));
     if (index === -1) {
         return res.status(404).json({ error: "Postagem não foi encontrada!" });
     }
-
     postagens.splice(index, 1);
     res.status(204).send();
 })
