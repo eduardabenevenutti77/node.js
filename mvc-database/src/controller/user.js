@@ -2,11 +2,7 @@ const User = require('../model/user');
 
 class UserController {
     async criarUsuario(nome, email, senha) {
-        if (
-            nome === undefined
-            || email === undefined
-            || senha === undefined
-        ) {
+        if (nome === undefined || email === undefined || senha === undefined) {
             throw new Error('Nome, email e senha são obrigatórios');
         }
         // INSERT INTO users (nome, email, senha) VALUES (nome, email, senha);
@@ -25,12 +21,7 @@ class UserController {
         return user;
     }
     async alterarUsuario(id, nome, email, senha) {
-        if (
-            id === undefined
-            || nome === undefined
-            || email === undefined
-            || senha === undefined
-        ) {
+        if (id === undefined || nome === undefined || email === undefined || senha === undefined) {
             throw new Error('Id, nome, email e senha são obrigatórios');
         }
         const user = await this.buscarPorId(id);
