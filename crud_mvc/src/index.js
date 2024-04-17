@@ -3,6 +3,7 @@ const UserApi = require('../src/api/user');
 const postApi = require('../src/api/post');
 const database = require('../src/config/database');
 const { error } = require('console');
+const sync = require('sync');
 
 console.log('Iniciando servidor...');
 const app = express();

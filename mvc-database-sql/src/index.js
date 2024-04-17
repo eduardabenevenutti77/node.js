@@ -3,7 +3,7 @@ const userApi = require('./api/user');
 const loggerApi = require('./api/logger');
 const database = require('./config/database');
 
-/**
+/*
  * Instalações necessárias:
  * npm install express
  * npm install sequelize
@@ -15,7 +15,8 @@ const database = require('./config/database');
  * npm install cors
  * npm install mysql2
  * npm install mongoose
- */
+*/
+
 console.log('Starting server....')
 const app = express()
 app.use(express.json())
