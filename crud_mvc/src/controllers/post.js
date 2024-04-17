@@ -6,5 +6,7 @@ class PostController {
             throw new Error('titulo, conteudo e autoID são obrigatórios');
         }
         const post = await Post.create({ titulo, conteudo, AutorID });
+        return post;
     }
+   // async showId(postId)
 }
