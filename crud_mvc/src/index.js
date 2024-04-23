@@ -1,7 +1,7 @@
 const express = require('express');
-const UserApi = require('../src/api/user');
-const PostApi = require('../src/api/post');
-const database = require('../src/config/database');
+const UserApi = require('./api/user');
+const PostApi = require('./api/post');
+const database = require('./config/database');
 // const { error } = require('console');
 // const sync = require('sync');
 
