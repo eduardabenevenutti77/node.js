@@ -6,8 +6,8 @@ const database = require('./config/database');
 // const sync = require('sync');
 
 console.log('Iniciando servidor...');
-const app = express();
-app.use(express.json());
+const app = express()
+app.use(express.json())
 
 /* rotas usuário */
 // app.post('/login', UserApi.login);
