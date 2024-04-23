@@ -42,6 +42,26 @@ class PostApi {
             return res.status(400).send({ error: error.message })
         }
     }
+    async showPostIDAutor(req, res) {
+        const {AutorID} = req.body;
+        const controller = new PostController();
+        try {
+            const post = await controller.showPost(Number(AutorID));
+            return res.status(200).send(post);
+        } catch (error) {
+            return res.status(400).send({ error: error.message })
+        }
+    }
+    async showPostIDPost(req, res) {
+        const {idPost} = req.body;
+        const controller = new PostController();
+        try {
+            const post = await controller.showPost(Number(idPost));
+            return res.status(200).send(post);
+        } catch (error) {
+            return res.status(400).send({ error: error.message })
+        }
+    }
 }
 
 module.exports = PostApi;

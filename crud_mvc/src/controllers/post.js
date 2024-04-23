@@ -8,11 +8,28 @@ class PostController {
         const post = await Post.create({ titulo, conteudo, AutorID });
         return post;
     }
-    async showId(postId) {
-        if (postId === undefined) {
-            throw new Error('O id de postagens é obrigatório!');
+    async showPost() {
+        const post = await Post.findAll();
+        if (!post) {
+            throw new Error('Postagem não foi encontrada!');
         }
-        const post = await Post.findByPk(postId);
+        return post;
+    } 
+    async showPostIDPost(idPost) {
+        if (idPost === undefined) {
+            throw new Error('O id do autor é obrigatório!');
+        }
+        const post = await Post.findByPk(idPost);
+        if (!post) {
+            throw new Error('Postagem não foi encontrada!');
+        }
+        return post;
+    }
+    async showPostIDAutor(AutorID) {
+        if (AutorID === undefined) {
+            throw new Error('O id do autor é obrigatório!');
+        }
+        const post = await Post.findByPk(AutorID);
         if (!post) {
             throw new Error('Postagem não foi encontrada!');
         }
@@ -35,9 +52,6 @@ class PostController {
         }
         const post = await this.showId(postId);
         post.destroy();
-    }
-    async showPost() {
-        return Post.findAll();
     }
 }
 

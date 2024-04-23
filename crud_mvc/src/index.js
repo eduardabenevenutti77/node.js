@@ -1,28 +1,28 @@
 const express = require('express');
 const UserApi = require('../src/api/user');
-const postApi = require('../src/api/post');
+const PostApi = require('../src/api/post');
 const database = require('../src/config/database');
-const { error } = require('console');
-const sync = require('sync');
+// const { error } = require('console');
+// const sync = require('sync');
 
 console.log('Iniciando servidor...');
 const app = express();
 app.use(express.json());
 
-// app.get('/', (req, res) => {
-//     res.send({ response: 'API - USERS & POST'});
-// })
-
 /* rotas usuário */
 // app.post('/login', UserApi.login);
-// app.post('/users', UserApi.newUser);
-// app.get('/users/', UserApi.showUser);
-// app.put('/users/:id', UserApi.updateUser);
-// app.delete('/users/:id', UserApi.deleteUser);
+app.post('/users', UserApi.newUser);
+app.get('/users/', UserApi.showUser);
+app.put('/users/:id', UserApi.updateUser);
+app.delete('/users/:id', UserApi.deleteUser);
 
 /* rotas postagens */
-// app.post('/post', postApi.newPost);
-// //app.get('/post/:id', postApi.)
+app.post('/post', PostApi.newPost);
+app.get('/post/', PostApi.showPost);
+app.get('/postAutor/:id', PostApi.showPostIDAutor);
+app.get('/post/:id', PostApi.showPostIDPost);
+app.put('/post/:id', PostApi.updatePost);
+app.delete('/post/:id', PostApi.deletePost);
 
 database.db.sync({ force: true })
     .then(() => {
