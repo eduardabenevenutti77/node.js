@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 
 /* rotas usuário */
-// app.post('/login', UserApi.login);
+app.post('/login', UserApi.login);
 app.post('/users', UserApi.newUser);
 app.get('/users/', UserApi.showUser);
 app.put('/users/:id', UserApi.updateUser);
