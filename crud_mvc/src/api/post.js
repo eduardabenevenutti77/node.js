@@ -2,9 +2,9 @@ const PostController = require('../controllers/post');
 
 class PostApi {
     async newPost(req, res) {
-        const titulo = req.body.nome;
-        const conteudo = req.body.email;
-        const AutorID = req.body.AutorID;
+        const titulo = req.body;
+        const conteudo = req.body;
+        const AutorID = req.body;
         try {
             const post = await PostController.newPost(titulo, conteudo, AutorID);
             return res.status(201).send(post);
@@ -15,9 +15,9 @@ class PostApi {
     async updatePost(req, res) {
         const {idPost} = req.params;
         const {titulo, conteudo, AutorID} = req.body;
-        const controller = new PostController();
+        // const controller = new PostController();
         try {
-            const post = await controller.updatePost(Number(idPost), titulo, conteudo, AutorID);
+            const post = await PostController.updatePost(Number(idPost), titulo, conteudo, AutorID);
             return res.status(200).send(post);
         } catch (error) {
             return res.status(400).send({ error: error.message })
@@ -25,18 +25,17 @@ class PostApi {
     }
     async deletePost(req, res) {
         const {idPost} = req.params;
-        const controller = new PostController();
+        // const controller = new PostController();
         try {
-            await controller.deletePost(Number(idPost));
+            await PostController.deletePost(Number(idPost));
             return res.status(204).send();
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
     async showPost(req, res) {
-        const controller = new PostController();
         try {
-            const post = await controller.showPost();
+            const post = await PostController.showPost();
             return res.status(200).send(post);
         } catch (error) {
             return res.status(400).send({ error: error.message })
@@ -44,9 +43,9 @@ class PostApi {
     }
     async showPostIDAutor(req, res) {
         const {AutorID} = req.body;
-        const controller = new PostController();
+        // const controller = new PostController();
         try {
-            const post = await controller.showPost(Number(AutorID));
+            const post = await PostController.showPost(Number(AutorID));
             return res.status(200).send(post);
         } catch (error) {
             return res.status(400).send({ error: error.message })
@@ -54,9 +53,9 @@ class PostApi {
     }
     async showPostIDPost(req, res) {
         const {idPost} = req.body;
-        const controller = new PostController();
+        // const controller = new PostController();
         try {
-            const post = await controller.showPost(Number(idPost));
+            const post = await PostController.showPost(Number(idPost));
             return res.status(200).send(post);
         } catch (error) {
             return res.status(400).send({ error: error.message })
@@ -64,4 +63,4 @@ class PostApi {
     }
 }
 
-module.exports = PostApi;
+module.exports = new PostApi();

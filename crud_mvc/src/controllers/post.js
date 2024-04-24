@@ -5,7 +5,7 @@ class PostController {
         if (titulo === undefined || conteudo === undefined || AutorID === undefined) {
             throw new Error('titulo, conteudo e autoID são obrigatórios');
         }
-        const post = await Post.create({ titulo, conteudo, AutorID });
+        const post = await Post.create( titulo, conteudo, AutorID );
         return post;
     }
     async showPost() {
@@ -35,24 +35,24 @@ class PostController {
         }
         return post;
     }
-    async updatePost(postId, titulo, conteudo, AutorID) {
-        if (postId === undefined || titulo === undefined || conteudo === undefined || AutorID === undefined) {
+    async updatePost(idPost, titulo, conteudo, AutorID) {
+        if (idPost === undefined || titulo === undefined || conteudo === undefined || AutorID === undefined) {
             throw new Error('O id de postagem, título e conteúdo são obrigatórios');
         }
-        const post = await this.showId(postId);
+        const post = await this.showPostIDPost(idPost);
         post.titulo = titulo;
         post.conteudo = conteudo;
         post.AutorID = AutorID;
         post.save();
         return post;
     }
-    async deletePost(postId) {
-        if (postId === undefined) {
+    async deletePost(idPost) {
+        if (idPost === undefined) {
             throw new Error('O id é obrigatório');
         }
-        const post = await this.showId(postId);
+        const post = await this.showPostIDPost(idPost);
         post.destroy();
     }
 }
 
-module.exports = PostController;
+module.exports = new PostController();

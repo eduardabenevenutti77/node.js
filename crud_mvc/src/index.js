@@ -18,13 +18,13 @@ app.delete('/users/:id', UserApi.deleteUser);
 
 /* rotas postagens */
 app.post('/post', PostApi.newPost);
-app.get('/post/', PostApi.showPost);
+app.get('/post', PostApi.showPost);
 app.get('/postAutor/:id', PostApi.showPostIDAutor);
 app.get('/post/:id', PostApi.showPostIDPost);
 app.put('/post/:id', PostApi.updatePost);
 app.delete('/post/:id', PostApi.deletePost);
 
-database.db.sync({ force: true })
+database.sync({ force: false })
     .then(() => {
         app.listen(3000, () => {
             console.log('O servidor está rodando na porta 3000')

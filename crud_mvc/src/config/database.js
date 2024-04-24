@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const database = new Sequelize(
-    'mvc_gerenciamento',
+    'mvc_prova',
     'root',
-    ' ',
+    '',
     { host: 'localhost', dialect: 'mysql'}
 )
 module.exports = database;
