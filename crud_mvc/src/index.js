@@ -13,14 +13,14 @@ app.use(express.json())
 app.post('/login', UserApi.login);
 app.post('/users', UserApi.newUser);
 app.get('/users/', UserApi.showUser);
-app.put('/users/:id', UserApi.updateUser);
-app.delete('/users/:id', UserApi.deleteUser);
+app.put('/users/:AutorID', UserApi.updateUser);
+app.delete('/users/:AutorID', UserApi.deleteUser);
 
 /* rotas postagens */
 app.post('/post', PostApi.newPost);
 app.get('/post', PostApi.showPost);
-app.get('/postAutor/:id', PostApi.showPostIDAutor);
-app.get('/post/:id', PostApi.showPostIDPost);
+app.get('/postAutor/:AutorID', PostApi.showPostIDAutor);
+app.get('/post/:idPost', PostApi.showPostIDPost);
 app.put('/post/:idPost', PostApi.updatePost);
 app.delete('/post/:idPost', PostApi.deletePost);
 

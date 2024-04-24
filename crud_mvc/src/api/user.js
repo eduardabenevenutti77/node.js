@@ -5,7 +5,6 @@ class UserApi {
         const nome = req.body.nome;
         const email = req.body.email;
         const senha = req.body.senha;
-        // const controller = new UserController();
         try {
             const user = await UserController.newUser(nome, email, senha);
             return res.status(201).send(user);
@@ -18,7 +17,6 @@ class UserApi {
         const { nome } = req.body;
         const { email } = req.body;
         const { senha } = req.body;
-        // const controller = new UserController();
         try {
             const user = await UserController.updateUser(Number(AutorID), nome, email, senha);
             return res.status(200).send(user);
@@ -28,7 +26,6 @@ class UserApi {
     }
     async deleteUser(req, res) {
         const { AutorID } = req.body;
-        // const controller = new UserController();
         try {
             await UserController.deleteUser(Number(AutorID));
             return res.status(204).send();
@@ -37,7 +34,6 @@ class UserApi {
         }
     }
     async showUser(req, res) {
-        // const controller = new UserController();
         try {
             const users = await UserController.showUser();
             return res.status(200).send(users);
@@ -54,8 +50,6 @@ class UserApi {
             return res.status(400).send({ error: error.message })
         }
     }
-
-    // Método para validar o token
     async validarToken(req, res, next) {
         const token = req.headers.authorization;
         try {

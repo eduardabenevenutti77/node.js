@@ -17,7 +17,7 @@ class PostController {
     } 
     async showPostIDPost(idPost) {
         if (idPost === undefined) {
-            throw new Error('O id do autor é obrigatório!');
+            throw new Error('O id do post é obrigatório!');
         }
         const post = await Post.findByPk(idPost);
         if (!post) {
