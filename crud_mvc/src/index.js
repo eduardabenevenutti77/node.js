@@ -21,8 +21,8 @@ app.post('/post', PostApi.newPost);
 app.get('/post', PostApi.showPost);
 app.get('/postAutor/:id', PostApi.showPostIDAutor);
 app.get('/post/:id', PostApi.showPostIDPost);
-app.put('/post/:id', PostApi.updatePost);
-app.delete('/post/:id', PostApi.deletePost);
+app.put('/post/:idPost', PostApi.updatePost);
+app.delete('/post/:idPost', PostApi.deletePost);
 
 database.sync({ force: false })
     .then(() => {
