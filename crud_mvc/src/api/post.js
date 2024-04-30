@@ -15,7 +15,6 @@ class PostApi {
     async updatePost(req, res) {
         const {idPost} = req.params;
         const {titulo, conteudo, AutorID} = req.body;
-        // const controller = new PostController();
         try {
             const post = await PostController.updatePost(Number(idPost), titulo, conteudo, AutorID);
             return res.status(200).send(post);
@@ -25,7 +24,6 @@ class PostApi {
     }
     async deletePost(req, res) {
         const {idPost} = req.params;
-        // const controller = new PostController();
         try {
             await PostController.deletePost(Number(idPost));
             return res.status(204).send();
@@ -43,7 +41,6 @@ class PostApi {
     }
     async showPostIDAutor(req, res) {
         const {AutorID} = req.body;
-        // const controller = new PostController();
         try {
             const post = await PostController.showPost(Number(AutorID));
             return res.status(200).send(post);
@@ -53,7 +50,6 @@ class PostApi {
     }
     async showPostIDPost(req, res) {
         const {idPost} = req.body;
-        // const controller = new PostController();
         try {
             const post = await PostController.showPost(Number(idPost));
             return res.status(200).send(post);

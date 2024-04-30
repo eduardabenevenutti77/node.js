@@ -62,7 +62,6 @@ class UserController {
         const jwtToken = jwt.sign({ id: user.id }, JWT_SECRET_KEY);
         return { token: jwtToken }
     }
-
     async validarToken(token) {
         try {
             // Verifica se o token é válido e retorna o payload
