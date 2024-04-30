@@ -52,21 +52,14 @@ class UserController {
             throw new Error('Email e senha são obrigatórios');
         }
         const user = await User.findOne({ where: { email }});
-
         if (!user) {
             throw new Error('Usuário não encontrado');
         }
-
-        // Compara a senha informada com a senha do usuário
         const senhaValida = await bcrypt.compare(senha, user.senha);
-
         if (!senhaValida) {
             throw new Error('Senha inválida');
         }
-
-        // Gera o token a partir da assinatura com a chave secreta
         const jwtToken = jwt.sign({ id: user.id }, JWT_SECRET_KEY);
-
         return { token: jwtToken }
     }
 
