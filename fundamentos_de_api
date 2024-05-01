@@ -1,0 +1,15 @@
+api (interface de programação de aplicações):
+ - serviço que recebe solicitações
+ - conecta soluções e serviços sem que a camada de abstração seja considerada
+ - ocorre por meio de solicitação-resposta - linear
+ vantagens: facilidade de integração, colaboração entre times para manter a API, competitividade
+ tipos: públicas (qualquer pessoa tem acesso), parceiro (colaboração entre empresas - compartilhamento de serviços), privado (comunicação interna entre serviços de uma empresa)
+ - FLUXO LINEAR (CLIENTE - REQUISIÇÃO - BUSCA DE INFO - RESPOSTA DA REQUISIÇÃO)
+ REST: estilo arquitetural para sistemas distribuídos, abordagem simplificada, escalável, operações entre os verbos http, stateless (estado minimo - mantem o minimo de status sobre as requisições, não mantem o último status perguntado)
+ RESTful: sistema em camadas, cliente-servidor, interfaces uniformes
+  pontos a serem considerados:
+    - cacheamento de solicitação em GET
+    - tratamento de erros
+    - documentações
+    - limitações 
+    - versionamento de API (controle de versão)
