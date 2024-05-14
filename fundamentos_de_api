@@ -57,3 +57,4 @@ boas práticas, frameworks and microsserviço - 14/05:
         padrões de projeto para dados:
          -> CQRS - sepera as operações de leitura e escrita em diferentes modelos (diferentes bancos), otimiza desempenho e escalibilidade
          -> EVENT SOURCING - efetua o backup de informações para garantir que não ocorra a perca de todos os dados
+      
