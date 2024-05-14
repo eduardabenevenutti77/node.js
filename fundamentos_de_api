@@ -49,3 +49,11 @@ boas práticas, frameworks and microsserviço - 14/05:
        -> escalibilidade horizontal (aumento de serviços independente do tamanho)
        -> facilidade de implementação e manutenção
        -> tecnologias e linguagens independentes 
+
+      gerenciamento de dados: 
+        -> cada microsserviço tem o seu própio banco de dados, isso promove o isolamento de dados, facilita a escalibilidade e a manutenção
+        -> consitência eventual - temporariamente os dados são diferentes (demora um tempinho para que os dados no geral sejam as mesmas) - em casos que isso pode ocorrer
+        -> consistência forte - em todo o momento os dados são os mesmos (aumento de custo) - geralmente em gestão de estoques de uma loja central, caso há uma distância pode-se usar o eventual
+        padrões de projeto para dados:
+         -> CQRS - sepera as operações de leitura e escrita em diferentes modelos (diferentes bancos), otimiza desempenho e escalibilidade
+         -> EVENT SOURCING - efetua o backup de informações para garantir que não ocorra a perca de todos os dados
