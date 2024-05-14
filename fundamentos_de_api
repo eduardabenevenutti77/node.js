@@ -13,3 +13,39 @@ api (interface de programação de aplicações):
     - documentações
     - limitações 
     - versionamento de API (controle de versão)
+
+boas práticas, frameworks and microsserviço - 14/05:
+  boas práticas :
+    -> uso de recursos com nomes significativos (facilita a identificação do recurso / preferencialmente em inglês) - não usar '/get_user' ou '/receberDadosUser'
+    -> utilize apenas um modelo de roteamento (plural, singular, camelCase, snack Case, Spinal Case)
+    -> utilização adequada dos métodos (GET - pegar, POST - cria, PUT/PATH - atualiza & DELETE - excluir)
+    -> evite o uso de recursos não seguros (get para exclusão)
+    -> usar cabeçalhos apropriados (JSON, TEXT, XML, AUTENTICAÇÃO)
+    -> quando não tiver conhecimento do recursos a ser usado, utilize o método POST
+    -> usar resposta e status adequados (200 - solicitação bem-sucedida / 201 - criação bem-sucedida / 404 - não encontrado)
+    -> paginação (solicitação de um subconjunto dos resultados - diminuindo a carga) e filtros para recursos extensos (solicitação de recursos com base em critérios especificos)
+    -> autenticação (determina quem é o usuário - JWT, BASIC AUTH, OAUTH)
+    -> autorização (determina se o usuário tem permissão para realizar tal processo) - implementação de um sistema para um controle de acesso
+
+    SSL/TSL - garante segurança durante a comunicação (https), criptografia de dados de transmitido (impedem que terceiros interceptem as informações)
+
+    fraworkes - de uso comum:
+      -> py (django, flask), js (express, netjs), java (spring boot, jersey), ruby (ruby/rails, snatra), php (laravel, symfony), c# (asp.net core, serviceStack)
+    
+    microsserviços:
+      -> abordagem arquitetônica
+      -> conjunto de vário serviços independentes
+      -> os serviços devem funcionar sozinhos
+      -> flexibilidade e modularidade
+      microsserviço vs monolíto:
+        monolítico - um único projeto (grande código fonte)
+        microsserviços - divisão de aplicações autônomas em conjuntos menores
+      princípios:
+       -> decomposição de serviços (faz uma única função)
+       -> independência (implementação/desenvolvimento de forma independente)
+       -> escalabilidade (escalar apenas serviços sob cargas, em vez de escalar toda a aplicação)
+      vantagens:
+       -> modularidade e desacoplamento
+       -> escalibilidade horizontal (aumento de serviços independente do tamanho)
+       -> facilidade de implementação e manutenção
+       -> tecnologias e linguagens independentes 
