@@ -6,14 +6,14 @@ class PostController {
             throw new Error('titulo, conteudo e autoID são obrigatórios');
         }
         const post = await Post.create( titulo, conteudo, AutorID );
-        return post;
+        return this.hipermidia(post);
     }
     async showPost() {
         const post = await Post.findAll();
         if (!post) {
             throw new Error('Postagem não foi encontrada!');
         }
-        return post;
+        return this.hipermidia(post);
     } 
     async showPostIDPost(idPost) {
         if (idPost === undefined) {
@@ -23,7 +23,7 @@ class PostController {
         if (!post) {
             throw new Error('Postagem não foi encontrada!');
         }
-        return post;
+        return this.hipermidia(post);
     }
     async showPostIDAutor(AutorID) {
         if (AutorID === undefined) {
@@ -33,7 +33,7 @@ class PostController {
         if (!post) {
             throw new Error('Postagem não foi encontrada!');
         }
-        return post;
+        return this.hipermidia(post);
     }
     async updatePost(idPost, titulo, conteudo, AutorID) {
         if (idPost === undefined || titulo === undefined || conteudo === undefined || AutorID === undefined) {
@@ -44,7 +44,7 @@ class PostController {
         post.conteudo = conteudo;
         post.AutorID = AutorID;
         post.save();
-        return post;
+        return this.hipermidia(post);
     }
     async deletePost(idPost) {
         if (idPost === undefined) {
@@ -52,6 +52,21 @@ class PostController {
         }
         const post = await this.showPostIDPost(idPost);
         post.destroy();
+    }
+    hipermidia(post) {
+        const idPost = post.id;
+        const AutorID = user.id;
+        return {
+            ...post.toJSON(),
+            links: [
+                { rel: "self", href: `/api/v1/post`, method: "GET" },
+                { rel: "self", href: `/api/v1/postAutor/${AutorID}`, method: "GET" },
+                { rel: "self", href: `/api/v1/post/${idPost}`, method: "GET" },
+                { rel: "update", href: `/api/v1/post/${idPost}`, method: "PUT" },
+                { rel: "delete", href: `/api/v1/post/${idPost}`, method: "DELETE" },
+                { rel: "insert", href: "/api/v1/post", method: "POST" }
+            ]
+        }
     }
 }
 

@@ -57,4 +57,9 @@ boas práticas, frameworks and microsserviço - 14/05:
         padrões de projeto para dados:
          -> CQRS - sepera as operações de leitura e escrita em diferentes modelos (diferentes bancos), otimiza desempenho e escalibilidade
          -> EVENT SOURCING - efetua o backup de informações para garantir que não ocorra a perca de todos os dados
-      
+
+  RESTful: camadas (0 - 3)
+    level 0: centralização em um único endpoint
+    level 1: recursos individualizados em uris (de forma equalitaria)
+    level 2: utilizar verbos adequados (status e headers)
+    level 3: controle de hipermídia

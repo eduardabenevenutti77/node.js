@@ -10,19 +10,19 @@ const app = express()
 app.use(express.json())
 
 /* rotas usuário */
-app.post('/login', UserApi.login);
-app.post('/users', UserApi.newUser);
-app.get('/users/', UserApi.showUser);
-app.put('/users/:AutorID', UserApi.updateUser);
-app.delete('/users/:AutorID', UserApi.deleteUser);
+app.post('/api/v1/login', UserApi.login);
+app.post('/api/v1/user', UserApi.newUser);
+app.get('/api/v1/user', UserApi.showUser);
+app.put('/api/v1/user/:AutorID', UserApi.updateUser);
+app.delete('/api/v1/user/:AutorID', UserApi.deleteUser);
 
 /* rotas postagens */
-app.post('/post', PostApi.newPost);
-app.get('/post', PostApi.showPost);
-app.get('/postAutor/:AutorID', PostApi.showPostIDAutor);
-app.get('/post/:idPost', PostApi.showPostIDPost);
-app.put('/post/:idPost', PostApi.updatePost);
-app.delete('/post/:idPost', PostApi.deletePost);
+app.post('/api/v1/post', PostApi.newPost);
+app.get('/api/v1/post', PostApi.showPost);
+app.get('/api/v1/postAutor/:AutorID', PostApi.showPostIDAutor);
+app.get('/api/v1/post/:idPost', PostApi.showPostIDPost);
+app.put('/api/v1/post/:idPost', PostApi.updatePost);
+app.delete('/api/v1/post/:idPost', PostApi.deletePost);
 
 database.sync({ force: false })
     .then(() => {

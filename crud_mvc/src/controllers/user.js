@@ -2,6 +2,7 @@ const { where } = require('sequelize');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const { error } = require('console');
+const user = require('../models/user');
 
 const saltRounds = 10;
 
@@ -13,7 +14,7 @@ class UserController {
         }
         const secretPassword = await bcrypt.hash(senha, saltRounds);
         const user = await User.create({ nome, email, senha: secretPassword });
-        return user;
+        return this.hipermidia(user);
     }
     async showId(AutorID) {
         if (AutorID === undefined) {
@@ -23,7 +24,7 @@ class UserController {
         if (!user) {
             throw new Error('Usuário não encontrado!')
         }
-        return user;
+        return this.hipermidia(user);
     }
     async updateUser(AutorID, nome, email, senha) {
         if (AutorID === undefined || nome === undefined || email === undefined || senha === undefined) {
@@ -35,7 +36,7 @@ class UserController {
         const secretPassword = await bcrypt.hash(senha, saltRounds);
         user.senha = secretPassword;
         user.save();
-        return user;
+        return this.hipermidia(user);
     }
     async deleteUser(AutorID) {
         if (AutorID === undefined) {
@@ -46,6 +47,7 @@ class UserController {
     }
     async showUser() {
         return User.findAll();
+        // return this.hipermidia(user);
     }
     async login(email, senha) {
         if (!email || !senha) {
@@ -70,6 +72,18 @@ class UserController {
         } catch (error) {
             throw new Error('Token inválido');
         }
+    }
+    hipermidia(user) {
+        const AutorID = user.id;
+        return {
+            ...user.toJSON(),
+            links: [
+                { rel: "self", href: `/api/v1/user`, method: "GET" },
+                { rel: "update", href: `/api/v1/user/${AutorID}`, method: "PUT" },
+                { rel: "delete", href: `/api/v1/user/${AutorID}`, method: "DELETE" },
+                { rel: "insert", href: "/api/v1/user", method: "POST" }
+            ]
+        };
     }
 }
 
