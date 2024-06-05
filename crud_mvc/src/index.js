@@ -12,6 +12,7 @@ app.use(express.json())
 /* rotas usuário */
 app.post('/api/v1/login', UserApi.login);
 app.post('/api/v1/user', UserApi.newUser);
+app.post('/api/v1/user/:AutorID', UserApi.newUser);
 app.get('/api/v1/user', UserApi.showUser);
 app.put('/api/v1/user/:AutorID', UserApi.updateUser);
 app.delete('/api/v1/user/:AutorID', UserApi.deleteUser);

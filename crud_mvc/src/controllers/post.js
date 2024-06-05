@@ -1,72 +1,117 @@
 const Post = require('../models/post');
 
 class PostController {
-    async newPost(titulo, conteudo, AutorID) {
+    async newPost(req, res) {
+        const { titulo, conteudo, AutorID } = req.body;
         if (titulo === undefined || conteudo === undefined || AutorID === undefined) {
-            throw new Error('titulo, conteudo e autoID são obrigatórios');
+            return res.status(400).json({ error: 'titulo, conteudo e AutorID são obrigatórios' });
         }
-        const post = await Post.create( titulo, conteudo, AutorID );
-        return this.hipermidia(post);
+        try {
+            const post = await Post.create({ titulo, conteudo, AutorID });
+            const hipermidia = this.hipermidia(post);
+            return res.status(201).json(hipermidia);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
     }
-    async showPost() {
-        const post = await Post.findAll();
-        if (!post) {
-            throw new Error('Postagem não foi encontrada!');
+
+    async showPost(req, res) {
+        try {
+            const posts = await Post.findAll();
+            const hipermidia = posts.map(post => this.hipermidia(post));
+            return res.status(200).json(hipermidia);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
         }
-        return this.hipermidia(post);
-    } 
-    async showPostIDPost(idPost) {
-        if (idPost === undefined) {
-            throw new Error('O id do post é obrigatório!');
-        }
-        const post = await Post.findByPk(idPost);
-        if (!post) {
-            throw new Error('Postagem não foi encontrada!');
-        }
-        return this.hipermidia(post);
     }
-    async showPostIDAutor(AutorID) {
-        if (AutorID === undefined) {
-            throw new Error('O id do autor é obrigatório!');
+
+    async showPostIDPost(req, res) {
+        const { idPost } = req.params;
+        if (!idPost) {
+            return res.status(400).json({ error: 'O id do post é obrigatório!' });
         }
-        const post = await Post.findByPk(AutorID);
-        if (!post) {
-            throw new Error('Postagem não foi encontrada!');
+        try {
+            const post = await Post.findByPk(idPost);
+            if (!post) {
+                return res.status(404).json({ error: 'Postagem não foi encontrada!' });
+            }
+            const hipermidia = this.hipermidia(post);
+            return res.status(200).json(hipermidia);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
         }
-        return this.hipermidia(post);
     }
-    async updatePost(idPost, titulo, conteudo, AutorID) {
+
+    async showPostIDAutor(req, res) {
+        const { AutorID } = req.params;
+        if (!AutorID) {
+            return res.status(400).json({ error: 'O id do autor é obrigatório!' });
+        }
+        try {
+            const posts = await Post.findAll({ where: { AutorID } });
+            if (!posts.length) {
+                return res.status(404).json({ error: 'Postagem não foi encontrada!' });
+            }
+            const hipermidia = posts.map(post => this.hipermidia(post));
+            return res.status(200).json(hipermidia);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+
+    async updatePost(req, res) {
+        const { idPost } = req.params;
+        const { titulo, conteudo, AutorID } = req.body;
         if (idPost === undefined || titulo === undefined || conteudo === undefined || AutorID === undefined) {
-            throw new Error('O id de postagem, título e conteúdo são obrigatórios');
+            return res.status(400).json({ error: 'O id de postagem, título e conteúdo são obrigatórios' });
         }
-        const post = await this.showPostIDPost(idPost);
-        post.titulo = titulo;
-        post.conteudo = conteudo;
-        post.AutorID = AutorID;
-        post.save();
-        return this.hipermidia(post);
+        try {
+            let post = await Post.findByPk(idPost);
+            if (!post) {
+                return res.status(404).json({ error: 'Postagem não foi encontrada!' });
+            }
+            post.titulo = titulo;
+            post.conteudo = conteudo;
+            post.AutorID = AutorID;
+            await post.save();
+            const hipermidia = this.hipermidia(post);
+            return res.status(200).json(hipermidia);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
     }
-    async deletePost(idPost) {
+
+    async deletePost(req, res) {
+        const { idPost } = req.params;
         if (idPost === undefined) {
-            throw new Error('O id é obrigatório');
+            return res.status(400).json({ error: 'O id é obrigatório' });
         }
-        const post = await this.showPostIDPost(idPost);
-        post.destroy();
+        try {
+            const post = await Post.findByPk(idPost);
+            if (!post) {
+                return res.status(404).json({ error: 'Postagem não foi encontrada!' });
+            }
+            await post.destroy();
+            return res.status(204).send();
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
     }
+
     hipermidia(post) {
         const idPost = post.id;
-        const AutorID = user.id;
+        const AutorID = post.AutorID;
         return {
             ...post.toJSON(),
             links: [
-                { rel: "self", href: `/api/v1/post`, method: "GET" },
-                { rel: "self", href: `/api/v1/postAutor/${AutorID}`, method: "GET" },
-                { rel: "self", href: `/api/v1/post/${idPost}`, method: "GET" },
-                { rel: "update", href: `/api/v1/post/${idPost}`, method: "PUT" },
-                { rel: "delete", href: `/api/v1/post/${idPost}`, method: "DELETE" },
-                { rel: "insert", href: "/api/v1/post", method: "POST" }
+                { rel: "self", href: `/api/v1/posts`, method: "GET" },
+                { rel: "author-posts", href: `/api/v1/posts/author/${AutorID}`, method: "GET" },
+                { rel: "self", href: `/api/v1/posts/${idPost}`, method: "GET" },
+                { rel: "update", href: `/api/v1/posts/${idPost}`, method: "PUT" },
+                { rel: "delete", href: `/api/v1/posts/${idPost}`, method: "DELETE" },
+                { rel: "create", href: "/api/v1/posts", method: "POST" }
             ]
-        }
+        };
     }
 }
 
